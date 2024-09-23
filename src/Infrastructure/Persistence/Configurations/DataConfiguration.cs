@@ -7,24 +7,26 @@ namespace Infrastructure.Persistence.Configurations
     {
         public static async Task SetupDataAsync(AtmContext context)
         {
-            if(context.Usuarios.Any())
+            if(SonContextosValidos(context))
             {
                 return;
             }
 
             List<Usuario> usuarios = UsuarioExtension.GetUsuarios();
-            
-            // Ensure that no duplicate tracking occurs
-            foreach (var usuario in usuarios)
-            {
-                if (!context.Usuarios.Local.Any(u => u.Id == usuario.Id))
-                {
-                    context.Usuarios.Attach(usuario);
-                }
-            }
-
             await context.Usuarios.AddRangeAsync(usuarios);
+
+            List<Cuenta> cuentas = CuentaExtension.GetCuentas();
+            await context.Cuentas.AddRangeAsync(cuentas);
+
+            List<Operacion> operaciones = OperacionExtension.GetOperaciones();
+            await context.Operaciones.AddRangeAsync(operaciones);
+
             await context.SaveChangesAsync();
+        }
+
+        private static bool SonContextosValidos(AtmContext context)
+        {
+            return context.Usuarios.Any() || context.Cuentas.Any() || context.Operaciones.Any();
         }
     }
 }

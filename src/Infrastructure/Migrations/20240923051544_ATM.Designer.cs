@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AtmContext))]
-    [Migration("20240923020910_ATM")]
+    [Migration("20240923051544_ATM")]
     partial class ATM
     {
         /// <inheritdoc />
@@ -39,20 +39,23 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CantidadDeIntentos")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
                     b.Property<string>("NumeroDeTarjeta")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Pin")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
 
                     b.HasKey("NumeroDeCuenta");
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Cuenta");
+                    b.ToTable("Cuentas");
                 });
 
             modelBuilder.Entity("Domain.Entities.Operacion", b =>
@@ -64,6 +67,9 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CuentaNumeroDeCuenta")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumeroDeCuenta")
                         .HasColumnType("int");
 
                     b.Property<double>("SaldoActual")
@@ -81,9 +87,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Usuario", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("NombreDeUsuario")
                         .HasColumnType("nvarchar(max)");
@@ -95,16 +103,20 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Cuenta", b =>
                 {
-                    b.HasOne("Domain.Entities.Usuario", null)
+                    b.HasOne("Domain.Entities.Usuario", "Usuario")
                         .WithMany("Cuentas")
                         .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Domain.Entities.Operacion", b =>
                 {
-                    b.HasOne("Domain.Entities.Cuenta", null)
+                    b.HasOne("Domain.Entities.Cuenta", "Cuenta")
                         .WithMany("Operaciones")
                         .HasForeignKey("CuentaNumeroDeCuenta");
+
+                    b.Navigation("Cuenta");
                 });
 
             modelBuilder.Entity("Domain.Entities.Cuenta", b =>

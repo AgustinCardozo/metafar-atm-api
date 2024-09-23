@@ -10,22 +10,17 @@ namespace Infrastructure.Extensions
             {
                 new()
                 {
-                    Id = new Guid(),
-                    NombreDeUsuario = "Pepe Argento",
-                    Cuentas = new()
-                    {
-                        CuentaExtension.GetCuenta()
-                    }
+                    Id = 1,
+                    NombreDeUsuario = "Pepe Argento"
                 },
                 new()
                 {
-                    Id = new Guid(),
-                    NombreDeUsuario = "Marcelo Gallardo",
-                    Cuentas = CuentaExtension.GetCuentas()
+                    Id = 2,
+                    NombreDeUsuario = "Marcelo Gallardo"
                 },
                 new()
                 {
-                    Id = new Guid(),
+                    Id = 3,
                     NombreDeUsuario = "Dardo Fuseneco"
                 }
             };
