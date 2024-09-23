@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Services;
+using Application.Models.Errors;
 using Application.Models.Request;
 using Application.Models.Responses;
 using Domain.Entities;
@@ -16,7 +17,7 @@ namespace Api.Controllers
             Cuenta cuenta = cuentaService.GetByTarjeta(request.NumeroDeTarjeta);
             if (cuentaService.Validate(request.Pin, cuenta))
             {
-                return NotFound();
+                return NotFound(ErrorMessage.GetErrorMessage($"No se encontro la tarjeta {request.NumeroDeTarjeta}."));
             }
             var response = new CuentaResponse()
             {
