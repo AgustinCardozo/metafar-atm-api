@@ -7,26 +7,31 @@ namespace Infrastructure.Persistence.Configurations
     {
         public static async Task SetupDataAsync(AtmContext context)
         {
-            if(SonContextosValidos(context))
+            if (!context.Usuarios.Any())
             {
-                return;
+                List<Usuario> usuarios = UsuarioExtension.GetUsuarios();
+                await context.Usuarios.AddRangeAsync(usuarios);
+                await context.SaveChangesAsync();
             }
 
-            List<Usuario> usuarios = UsuarioExtension.GetUsuarios();
-            await context.Usuarios.AddRangeAsync(usuarios);
+            if (!context.Cuentas.Any())
+            {
+                List<Cuenta> cuentas = CuentaExtension.GetCuentas();
+                await context.Cuentas.AddRangeAsync(cuentas);
+                //await context.SaveChangesAsync();
+            }
 
-            List<Cuenta> cuentas = CuentaExtension.GetCuentas();
-            await context.Cuentas.AddRangeAsync(cuentas);
-
-            List<Operacion> operaciones = OperacionExtension.GetOperaciones();
-            await context.Operaciones.AddRangeAsync(operaciones);
-
-            await context.SaveChangesAsync();
+            if (!context.Operaciones.Any())
+            {
+                List<Operacion> operaciones = OperacionExtension.GetOperaciones();
+                await context.Operaciones.AddRangeAsync(operaciones);
+                await context.SaveChangesAsync();
+            }
         }
 
         private static bool SonContextosValidos(AtmContext context)
         {
-            return context.Usuarios.Any() || context.Cuentas.Any() || context.Operaciones.Any();
+            return context.Usuarios.Any() && context.Cuentas.Any() && context.Operaciones.Any();
         }
     }
 }

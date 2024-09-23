@@ -1,7 +1,6 @@
 using Api;
 using Infrastructure;
 using Infrastructure.Persistence;
-using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,7 +38,6 @@ try
 {
     var context = services.GetRequiredService<AtmContext>();
     await context.Database.MigrateAsync();
-    await DataConfiguration.SetupDataAsync(context);
 }
 catch (Exception ex)
 {
@@ -49,3 +47,6 @@ catch (Exception ex)
 }
 
 app.Run();
+
+
+

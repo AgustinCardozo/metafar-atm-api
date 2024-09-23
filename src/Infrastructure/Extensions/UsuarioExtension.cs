@@ -10,17 +10,17 @@ namespace Infrastructure.Extensions
             {
                 new()
                 {
-                    Id = 1,
+                    Id = new Guid("943a6dfc-99ab-49ee-9f44-48c8e6da71a2"),
                     NombreDeUsuario = "Pepe Argento"
                 },
                 new()
                 {
-                    Id = 2,
+                    Id = new Guid("cac3bf1b-63df-4d07-ade5-a45bf0d09ea9"),
                     NombreDeUsuario = "Marcelo Gallardo"
                 },
                 new()
                 {
-                    Id = 3,
+                    Id = new Guid("c7a9abed-adbd-4d90-91a9-4cdf1be65b07"),
                     NombreDeUsuario = "Dardo Fuseneco"
                 }
             };

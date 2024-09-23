@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
@@ -12,6 +13,14 @@ namespace Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            EntityConfiguration(modelBuilder);
+        }
+
+        private static void EntityConfiguration(ModelBuilder modelBuilder)
+        {
+            _ = new UsuarioConfiguration(modelBuilder.Entity<Usuario>());
+            _ = new CuentaConfiguration(modelBuilder.Entity<Cuenta>());
+            _ = new OperacionConfiguration(modelBuilder.Entity<Operacion>());
         }
     }
 }

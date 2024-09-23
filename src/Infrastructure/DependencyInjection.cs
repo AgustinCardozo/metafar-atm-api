@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Consts;
 using Infrastructure.Persistence;
+using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +17,26 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddJwtService(configuration);
             services.AddDbContext<AtmContext>(options => options.UseSqlServer(configuration.GetConnectionString(Consts.ConfigKeys.DB_CONN)));
+            services.AddJwtService(configuration);
+            services.AddRepositories();
+            services.AddServices();
+            return services;
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ICuentaRepository, CuentaRepository>();
+            services.AddScoped<IOperacionRepository, OperacionRepository>();
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IOperacionService, OperacionService>();
+            services.AddScoped<ICuentaService, CuentaService>();
             return services;
         }
 

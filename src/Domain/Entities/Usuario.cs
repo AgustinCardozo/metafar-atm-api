@@ -1,8 +1,11 @@
-﻿namespace Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Entities
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         public string NombreDeUsuario { get; set; }
         public List<Cuenta> Cuentas { get; set; }
     }

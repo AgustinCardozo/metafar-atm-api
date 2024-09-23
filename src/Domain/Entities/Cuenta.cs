@@ -12,8 +12,8 @@ namespace Domain.Entities
         public int Pin { get; set; }
         public int CantidadDeIntentos { get; set; }
         public bool Bloqueado { get; set; } = false;
-        [ForeignKey("IdUsuario")]
-        public int IdUsuario { get; set; }
+        [ForeignKey("UsuarioId")]
+        public Guid UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
         public List<Operacion> Operaciones { get; set; }
     }
