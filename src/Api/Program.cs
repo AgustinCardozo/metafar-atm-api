@@ -1,4 +1,5 @@
 using Api;
+using Application.Models.Errors;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,7 @@ try
 catch (Exception ex)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error ocurred during migration");
+    logger.LogError(ex, ErrorMessage.FALLA_MIGRACION);
     throw;
 }
 

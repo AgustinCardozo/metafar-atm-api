@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Services;
+using Application.Models.Errors;
 using Application.Models.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,7 @@ namespace Api.Controllers
 
             if (cuenta is null)
             {
-                return NotFound($"No se encontro la tarjeta {numeroDeTarjeta}.");
+                return NotFound(ErrorMessage.GetErrorMessage($"No se encontro la tarjeta {numeroDeTarjeta}."));
             }
 
             Operacion operacion = cuenta.Operaciones.First();
@@ -42,17 +43,19 @@ namespace Api.Controllers
             Cuenta cuenta = cuentaService.GetByTarjeta(request.NumeroDeTarjeta);
             if (cuenta is null)
             {
-                return NotFound($"No se encontro la tarjeta {request.NumeroDeTarjeta}.");
+                return NotFound(ErrorMessage.GetErrorMessage($"No se encontro la tarjeta {request.NumeroDeTarjeta}."));
             }
 
             Operacion operacion = cuenta.Operaciones.First();
+
             if (operacion.SaldoActual < request.Monto)
             {
-                return BadRequest("Saldo insuficiente");
+                return BadRequest(ErrorMessage.SALDO_INSUFIENTE);
             }
-            var saldoAnterior = operacion.SaldoActual;
-            operacion.SaldoActual -= request.Monto;
 
+            var saldoAnterior = operacion.SaldoActual;
+
+            operacion.SaldoActual -= request.Monto;
             operacion.Id = Guid.NewGuid();
             operacion.UltimaExtraccion = DateTime.Now;
             operacionService.Add(operacion);
