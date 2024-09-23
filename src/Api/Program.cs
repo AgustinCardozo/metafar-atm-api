@@ -1,6 +1,7 @@
 using Api;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,12 +39,13 @@ try
 {
     var context = services.GetRequiredService<AtmContext>();
     await context.Database.MigrateAsync();
-    //await Seed.SeedData(context);
+    await DataConfiguration.SetupDataAsync(context);
 }
 catch (Exception ex)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "An error ocurred during migration");
+    throw;
 }
 
 app.Run();
