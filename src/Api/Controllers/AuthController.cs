@@ -19,6 +19,10 @@ namespace Api.Controllers
             {
                 return NotFound(ErrorMessage.GetErrorMessage($"No se encontro la tarjeta {request.NumeroDeTarjeta}."));
             }
+            if(cuenta.CantidadDeIntentos != 0)
+            {
+                return BadRequest(ErrorMessage.PIN_INVALIDO);
+            }
             var response = new CuentaResponse()
             {
                 NombreDeUsuario = cuenta.Usuario.NombreDeUsuario,

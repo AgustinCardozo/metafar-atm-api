@@ -6,6 +6,7 @@ namespace Application.Interfaces.Services
     {
         void Add(Cuenta cuenta);
         Cuenta GetByTarjeta(string numeroDeTarjeta);
+        void Update(Cuenta cuenta);
         bool Validate(int pin, Cuenta cuenta);
     }
 }

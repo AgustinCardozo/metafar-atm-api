@@ -31,16 +31,30 @@ namespace Infrastructure.Services
             return cuenta;
         }
 
+        public void Update(Cuenta cuenta)
+        {
+            cuentaRepo.Update(cuenta);
+        }
+
         public bool Validate(int pin, Cuenta cuenta)
         {
             if(cuenta.Pin != pin)
             {
                 cuenta.CantidadDeIntentos++;
+
+                if (cuenta.CantidadDeIntentos >= 4)
+                {
+                    cuenta.Bloqueado = true;
+                }
+
+                Update(cuenta);
+                return cuenta.Bloqueado;
             }
-            if(cuenta.CantidadDeIntentos >= 4)
-            {
-                cuenta.Bloqueado = true;
-            }
+
+            cuenta.CantidadDeIntentos = 0;
+            cuenta.Bloqueado = false;
+            Update(cuenta);
+
             return cuenta.Bloqueado;
         }
     }
