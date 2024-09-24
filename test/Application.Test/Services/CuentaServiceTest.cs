@@ -35,11 +35,6 @@ namespace Infrastructure.Test.Services
         {
             var cuenta = new Cuenta { Pin = pin, CantidadDeIntentos = cantidadDeIntentos, Bloqueado = false };
             var result = _cuentaService.Validate(1234, cuenta);
-            if(cantidadDeIntentos > 4)
-            {
-                Assert.True(result);
-                return;
-            }
             Assert.False(result);
         }
 
