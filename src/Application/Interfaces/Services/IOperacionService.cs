@@ -1,4 +1,4 @@
-﻿using Application.Models.Responses;
+﻿using Application.ViewModels.Responses;
 using Domain.Entities;
 
 namespace Application.Interfaces.Services

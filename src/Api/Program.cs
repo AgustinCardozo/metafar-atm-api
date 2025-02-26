@@ -1,6 +1,6 @@
 using Api;
-using Application.Models.Errors;
-using Infrastructure;
+using Application;
+using Application.ViewModels.Errors;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddSwagger()
-    .AddInfrastructure(builder.Configuration);
+    .AddApplicationService(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

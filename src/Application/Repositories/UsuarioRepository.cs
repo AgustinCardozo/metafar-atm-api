@@ -1,8 +1,9 @@
 ﻿using Application.Interfaces.Repositories;
+using Common.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistence;
 
-namespace Infrastructure.Repositories
+namespace Application.Repositories
 {
     public class UsuarioRepository(AtmContext _context) : GenericRepository<Usuario>(_context), IUsuarioRepository
     {

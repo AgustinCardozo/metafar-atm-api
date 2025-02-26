@@ -1,9 +1,9 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using Application.Models.Responses;
+using Application.ViewModels.Responses;
 using Domain.Entities;
 
-namespace Infrastructure.Services
+namespace Application.Services
 {
     public class OperacionService(IOperacionRepository operacionRepo, ICuentaService cuentaService) : IOperacionService
     {

@@ -1,4 +1,4 @@
-﻿namespace Application.Models.Requests
+﻿namespace Application.ViewModels.Requests
 {
     public class RetiroRequest
     {

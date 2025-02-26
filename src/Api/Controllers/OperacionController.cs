@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces.Services;
-using Application.Models.Errors;
+using Application.ViewModels.Errors;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

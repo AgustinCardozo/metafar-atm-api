@@ -1,7 +1,8 @@
 ﻿using Application.Interfaces.Services;
-using Application.Models.Errors;
-using Application.Models.Request;
-using Application.Models.Responses;
+using Application.ViewModels.Errors;
+using Application.ViewModels.Request;
+using Application.ViewModels.Responses;
+using Common.Services.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

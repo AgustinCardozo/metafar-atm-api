@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Services;
-using Application.Models.Errors;
-using Application.Models.Requests;
+using Application.ViewModels.Errors;
+using Application.ViewModels.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

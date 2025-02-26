@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Application.Models.Errors
+﻿namespace Application.ViewModels.Errors
 {
     public static class ErrorMessage
     {

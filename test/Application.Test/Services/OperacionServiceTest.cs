@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
-using Infrastructure.Services;
 using Moq;
 
 namespace Infrastructure.Test.Services

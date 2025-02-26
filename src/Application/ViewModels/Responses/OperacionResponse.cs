@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Models.Responses
+﻿namespace Application.ViewModels.Responses
 {
     public class OperacionResponse
     {

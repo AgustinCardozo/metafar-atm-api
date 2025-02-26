@@ -1,8 +1,8 @@
-﻿using Application.Interfaces.Repositories;
+﻿using Common.Repositories.Interfaces;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories
+namespace Common.Repositories
 {
     public class GenericRepository<TEntity>(AtmContext _context) : IGenericRepository<TEntity> where TEntity : class
     {

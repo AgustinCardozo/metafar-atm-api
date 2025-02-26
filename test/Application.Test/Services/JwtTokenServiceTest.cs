@@ -1,6 +1,5 @@
-﻿using Infrastructure.Services;
+﻿using Common.Services;
 using Microsoft.Extensions.Configuration;
-using Moq;
 
 namespace Infrastructure.Test.Services
 {

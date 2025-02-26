@@ -2,7 +2,7 @@
 using Application.Interfaces.Services;
 using Domain.Entities;
 
-namespace Infrastructure.Services
+namespace Application.Services
 {
     public class CuentaService(ICuentaRepository cuentaRepo, IOperacionRepository operacionRepo, IUsuarioRepository usuarioRepo) : ICuentaService
     {

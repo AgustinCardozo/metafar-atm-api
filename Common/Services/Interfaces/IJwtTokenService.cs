@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Interfaces.Services
+﻿namespace Common.Services.Interfaces
 {
     public interface IJwtTokenService
     {

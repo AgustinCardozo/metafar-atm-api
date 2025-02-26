@@ -1,4 +1,4 @@
-﻿namespace Application.Models.Request
+﻿namespace Application.ViewModels.Request
 {
     public class CuentaRequest
     {

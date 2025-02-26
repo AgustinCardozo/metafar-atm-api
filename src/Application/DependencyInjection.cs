@@ -1,26 +1,39 @@
-﻿using System.Text;
-using Application.Interfaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using Domain.Consts;
+using Application.Options;
+using Application.Repositories;
+using Application.Services;
+using Common.Repositories;
+using Common.Repositories.Interfaces;
+using Common.Services;
+using Common.Services.Interfaces;
 using Infrastructure.Persistence;
-using Infrastructure.Repositories;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
-namespace Infrastructure
+namespace Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AtmContext>(options => options.UseSqlServer(configuration.GetConnectionString(Consts.ConfigKeys.DB_CONN)));
+            services.AddOptions()
+                .Configure<DbOption>(configuration.GetSection(DbOption.Key))
+                .Configure<JwtOption>(configuration.GetSection(JwtOption.Jwt));
+
+            services.AddDbContext<AtmContext>((serviceProvider, options) => {
+                var dbOption = serviceProvider.GetRequiredService<IOptions<DbOption>>();
+                options.UseSqlServer(dbOption.Value.DatabaseConnection);
+            });
+
             services.AddJwtService(configuration);
-            services.AddRepositories();
             services.AddServices();
+            services.AddRepositories();
             return services;
         }
 
@@ -42,20 +55,20 @@ namespace Infrastructure
 
         public static IServiceCollection AddJwtService(this IServiceCollection services, IConfiguration configuration)
         {
-            string jwtKey = configuration.GetSection(Consts.ConfigKeys.JWT).GetValue(Consts.ConfigKeys.KEY, string.Empty);
+            var serviceProvider = services.BuildServiceProvider();
+            var jwtOption = serviceProvider.GetRequiredService<IOptions<JwtOption>>();
+
             services
-                .AddAuthentication(options =>
-                {
+                .AddAuthentication(options => {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(options =>
-                {
+                .AddJwtBearer(options => {
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters 
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKey)),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOption.Value.Key)),
                         ValidateAudience = false,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
