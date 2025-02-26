@@ -1,9 +1,11 @@
-﻿using Common.Services;
+using Common.Services;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Test.Services
+namespace Api.Test.Common.Services;
+
+public class JwtTokenServiceTest
 {
-    public class JwtTokenServiceTest
+    public class JwtTokenServiceTestBorrar
     {
         [Fact]
         public void AuthenticateSuccess()

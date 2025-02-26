@@ -3,7 +3,7 @@ using Application.Services;
 using Domain.Entities;
 using Moq;
 
-namespace Infrastructure.Test.Services
+namespace Api.Test.Application.Services
 {
     public class CuentaServiceTest
     {

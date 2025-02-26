@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\Api\Api.csproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2A058C0C-4BA1-42C8-AF84-0E256E0D7C58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Test", "test\Application.Test\Infrastructure.Test.csproj", "{9C6A7F08-A100-4117-B59E-FD60571CDEC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Test", "test\Application.Test\Api.Test.csproj", "{9C6A7F08-A100-4117-B59E-FD60571CDEC6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{3266DC13-FE2C-4964-83B4-23B21B882E51}"
 EndProject
