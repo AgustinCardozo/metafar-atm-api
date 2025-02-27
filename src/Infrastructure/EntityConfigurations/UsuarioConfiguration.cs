@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.EntityConfigurations
 {
-    public class UsuarioConfiguration
+    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {
-        public UsuarioConfiguration(EntityTypeBuilder<Usuario> entityBuilder)
+        public void Configure(EntityTypeBuilder<Usuario> entityBuilder)
         {
             entityBuilder.ToTable("Usuario");
             entityBuilder.HasKey(x => x.Id);
@@ -33,7 +33,7 @@ namespace Infrastructure.Persistence.Configurations
                     Id = new Guid("774B7FA6-50FD-4ABC-80F7-B2000B349C23"),
                     NombreDeUsuario = "Dardo Fuseneco"
                 }
-                );
+            );
         }
     }
 }

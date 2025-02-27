@@ -2,15 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.EntityConfigurations
 {
-    public class CuentaConfiguration
+    public class CuentaConfiguration : IEntityTypeConfiguration<Cuenta>
     {
-        public CuentaConfiguration(EntityTypeBuilder<Cuenta> entityBuilder)
+        public void Configure(EntityTypeBuilder<Cuenta> entityBuilder)
         {
             entityBuilder.ToTable("Cuentas");
             entityBuilder.HasKey(x => x.NumeroDeCuenta);
-            entityBuilder.Property(x => x.NumeroDeTarjeta).IsRequired();
+            entityBuilder.Property(x => x.NumeroDeTarjeta).HasMaxLength(16).IsRequired();
             entityBuilder.Property(x => x.Pin).IsRequired();
             entityBuilder.Property(x => x.CantidadDeIntentos).IsRequired();
             entityBuilder.Property(x => x.Bloqueado).IsRequired();

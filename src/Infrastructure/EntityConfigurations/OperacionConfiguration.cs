@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.EntityConfigurations
 {
-    public class OperacionConfiguration
+    public class OperacionConfiguration : IEntityTypeConfiguration<Operacion>
     {
-        public OperacionConfiguration(EntityTypeBuilder<Operacion> entityBuilder)
+        public void Configure(EntityTypeBuilder<Operacion> entityBuilder)
         {
             entityBuilder.ToTable("Operaciones");
             entityBuilder.HasKey(x => x.Id);

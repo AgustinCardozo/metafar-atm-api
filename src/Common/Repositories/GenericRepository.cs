@@ -1,5 +1,5 @@
 ﻿using Common.Repositories.Interfaces;
-using Infrastructure.Persistence;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Common.Repositories

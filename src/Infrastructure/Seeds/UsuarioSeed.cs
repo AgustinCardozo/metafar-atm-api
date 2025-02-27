@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Extensions
+namespace Infrastructure.Seeds
 {
-    public static class UsuarioExtension
+    public static class UsuarioSeed
     {
         public static List<Usuario> GetUsuarios()
         {

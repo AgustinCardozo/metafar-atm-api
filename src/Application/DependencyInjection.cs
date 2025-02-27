@@ -7,7 +7,7 @@ using Common.Repositories;
 using Common.Repositories.Interfaces;
 using Common.Services;
 using Common.Services.Interfaces;
-using Infrastructure.Persistence;
+using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

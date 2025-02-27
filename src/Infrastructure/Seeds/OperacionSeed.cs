@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Extensions
+namespace Infrastructure.Seeds
 {
-    public static class OperacionExtension
+    public static class OperacionSeed
     {
         public static List<Operacion> GetOperaciones()
         {

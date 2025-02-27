@@ -1,7 +1,7 @@
 using Api;
 using Application;
 using Application.ViewModels.Errors;
-using Infrastructure.Persistence;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

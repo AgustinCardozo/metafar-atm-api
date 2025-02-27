@@ -1,14 +1,14 @@
 ﻿using Domain.Entities;
-using Infrastructure.Persistence.Configurations;
+using Infrastructure.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure
 {
     public class AtmContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Cuenta> Cuentas { get; set;}
-        public DbSet<Operacion> Operaciones { get; set;}
+        public DbSet<Cuenta> Cuentas { get; set; }
+        public DbSet<Operacion> Operaciones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,9 +18,9 @@ namespace Infrastructure.Persistence
 
         private static void EntityConfiguration(ModelBuilder modelBuilder)
         {
-            _ = new UsuarioConfiguration(modelBuilder.Entity<Usuario>());
-            _ = new CuentaConfiguration(modelBuilder.Entity<Cuenta>());
-            _ = new OperacionConfiguration(modelBuilder.Entity<Operacion>());
+            modelBuilder.ApplyConfiguration(new CuentaConfiguration());
+            modelBuilder.ApplyConfiguration(new  OperacionConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
         }
     }
 }
