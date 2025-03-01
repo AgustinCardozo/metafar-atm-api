@@ -29,12 +29,12 @@ namespace Api.Test.Application.Services
         }
 
         [Theory]
-        [InlineData(1235, 0)]
-        [InlineData(1234, 5)]
-        public void ValidateSuccess(int pin, int cantidadDeIntentos)
+        [InlineData("1235", 0)]
+        [InlineData("1234", 5)]
+        public void ValidateSuccess(string pin, int cantidadDeIntentos)
         {
             var cuenta = new Cuenta { Pin = pin, CantidadDeIntentos = cantidadDeIntentos, Bloqueado = false };
-            var result = _cuentaService.Validate(1234, cuenta);
+            var result = _cuentaService.Validate("1234", cuenta);
             Assert.False(result);
         }
 

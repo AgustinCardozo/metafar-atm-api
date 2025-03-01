@@ -9,7 +9,7 @@ namespace Domain.Entities
         public int NumeroDeCuenta { get; set; }
         [CreditCard]
         public string NumeroDeTarjeta { get; set; }
-        public int Pin { get; set; }
+        public string Pin { get; set; }
         public int CantidadDeIntentos { get; set; }
         public bool Bloqueado { get; set; } = false;
         [ForeignKey("UsuarioId")]
