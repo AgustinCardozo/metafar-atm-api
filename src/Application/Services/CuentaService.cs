@@ -31,12 +31,12 @@ namespace Application.Services
             return cuenta;
         }
 
-        public void Update(Cuenta cuenta)
+        public bool IsActive(Cuenta cuenta)
         {
-            cuentaRepo.Update(cuenta);
+            return cuenta.Activado;
         }
 
-        public bool Validate(int pin, Cuenta cuenta)
+        public bool IsBlocked(string pin, Cuenta cuenta)
         {
             if(cuenta.Pin != pin)
             {
@@ -56,6 +56,11 @@ namespace Application.Services
             Update(cuenta);
 
             return cuenta.Bloqueado;
+        }
+
+        public void Update(Cuenta cuenta)
+        {
+            cuentaRepo.Update(cuenta);
         }
     }
 }

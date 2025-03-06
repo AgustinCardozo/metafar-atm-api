@@ -6,7 +6,8 @@ namespace Application.Interfaces.Services
     {
         void Add(Cuenta cuenta);
         Cuenta GetByTarjeta(string numeroDeTarjeta);
+        bool IsActive(Cuenta cuenta);
+        bool IsBlocked(string pin, Cuenta cuenta);
         void Update(Cuenta cuenta);
-        bool Validate(int pin, Cuenta cuenta);
     }
 }

@@ -34,7 +34,7 @@ namespace Api.Test.Application.Services
         public void ValidateSuccess(string pin, int cantidadDeIntentos)
         {
             var cuenta = new Cuenta { Pin = pin, CantidadDeIntentos = cantidadDeIntentos, Bloqueado = false };
-            var result = _cuentaService.Validate("1234", cuenta);
+            var result = _cuentaService.IsBlocked("1234", cuenta);
             Assert.False(result);
         }
 

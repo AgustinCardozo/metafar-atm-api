@@ -3,6 +3,6 @@
     public class CuentaRequest
     {
         public string NumeroDeTarjeta { get; set; }
-        public int Pin { get; set; }
+        public string Pin { get; set; }
     }
 }

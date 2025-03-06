@@ -16,13 +16,17 @@ namespace Api.Controllers
         public IActionResult Login(CuentaRequest request)
         {
             Cuenta cuenta = cuentaService.GetByTarjeta(request.NumeroDeTarjeta);
-            if (cuentaService.Validate(request.Pin, cuenta))
+            if (cuentaService.IsBlocked(request.Pin, cuenta))
             {
-                return NotFound(ErrorMessage.GetErrorMessage($"No se encontro la tarjeta {request.NumeroDeTarjeta}."));
+                return NotFound(ErrorMessage.Validations.CUENTA_BLOQUEADA);
+            }
+            if (!cuentaService.IsActive(cuenta))
+            {
+                return Problem(ErrorMessage.Validations.CUENTA_INACTIVA);
             }
             if(cuenta.CantidadDeIntentos != 0)
             {
-                return BadRequest(ErrorMessage.PIN_INVALIDO);
+                return BadRequest(ErrorMessage.Validations.PIN_INVALIDO);
             }
             var response = new CuentaResponse()
             {

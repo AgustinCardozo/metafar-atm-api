@@ -14,6 +14,7 @@ namespace Infrastructure.EntityConfigurations
             entityBuilder.Property<string>(x => x.Pin).HasMaxLength(4).IsRequired();
             entityBuilder.Property(x => x.CantidadDeIntentos).IsRequired();
             entityBuilder.Property(x => x.Bloqueado).IsRequired();
+            entityBuilder.Property<bool>(x => x.Activado).HasDefaultValue(true).IsRequired();
 
             entityBuilder
                 .HasOne(x => x.Usuario)
