@@ -8,20 +8,10 @@ namespace Infrastructure.Seeds
         {
             return new List<Usuario>()
             {
-                new()
+                new Usuario()
                 {
-                    Id = new Guid("943a6dfc-99ab-49ee-9f44-48c8e6da71a2"),
-                    NombreDeUsuario = "Pepe Argento"
-                },
-                new()
-                {
-                    Id = new Guid("cac3bf1b-63df-4d07-ade5-a45bf0d09ea9"),
-                    NombreDeUsuario = "Marcelo Gallardo"
-                },
-                new()
-                {
-                    Id = new Guid("c7a9abed-adbd-4d90-91a9-4cdf1be65b07"),
-                    NombreDeUsuario = "Dardo Fuseneco"
+                    Id = new Guid("2ccef8f6-fe86-4e8d-a24b-6bd14f278e99"),
+                    NombreDeUsuario = "Benito Camela"
                 }
             };
         }

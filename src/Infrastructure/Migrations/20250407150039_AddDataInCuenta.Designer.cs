@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AtmContext))]
-    partial class AtmContextModelSnapshot : ModelSnapshot
+    [Migration("20250407150039_AddDataInCuenta")]
+    partial class AddDataInCuenta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,16 +113,6 @@ namespace Infrastructure.Migrations
                             NumeroDeTarjeta = "4444333311117777",
                             Pin = "0628",
                             UsuarioId = new Guid("774b7fa6-50fd-4abc-80f7-b2000b349c23")
-                        },
-                        new
-                        {
-                            NumeroDeCuenta = 48342025,
-                            Activado = false,
-                            Bloqueado = false,
-                            CantidadDeIntentos = 0,
-                            NumeroDeTarjeta = "4454272409039986",
-                            Pin = "1051",
-                            UsuarioId = new Guid("2ccef8f6-fe86-4e8d-a24b-6bd14f278e99")
                         });
                 });
 
@@ -284,20 +277,6 @@ namespace Infrastructure.Migrations
                             NumeroDeCuenta = 18122022,
                             SaldoActual = 5000000.0,
                             UltimaExtraccion = new DateTime(2025, 4, 6, 11, 23, 4, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("1355a80b-21da-45cb-89bf-aa7f5861ecad"),
-                            NumeroDeCuenta = 48342025,
-                            SaldoActual = 1000000.0,
-                            UltimaExtraccion = new DateTime(2025, 4, 8, 11, 13, 23, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("78b1f9b5-293f-40f9-9810-dfa2b876a98b"),
-                            NumeroDeCuenta = 48342025,
-                            SaldoActual = 700000.0,
-                            UltimaExtraccion = new DateTime(2025, 4, 8, 11, 13, 23, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -330,11 +309,6 @@ namespace Infrastructure.Migrations
                         {
                             Id = new Guid("774b7fa6-50fd-4abc-80f7-b2000b349c23"),
                             NombreDeUsuario = "Dardo Fuseneco"
-                        },
-                        new
-                        {
-                            Id = new Guid("2ccef8f6-fe86-4e8d-a24b-6bd14f278e99"),
-                            NombreDeUsuario = "Benito Camela"
                         });
                 });
 

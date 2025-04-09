@@ -6,30 +6,30 @@ namespace Infrastructure.Seeds
     {
         public static List<Cuenta> GetCuentas()
         {
-            return
-            [
-                new()
+            return new List<Cuenta>
+            {
+                new Cuenta()
                 {
-                    NumeroDeCuenta = 23042010,
-                    NumeroDeTarjeta = "4444222200008888",
-                    Pin = "1234",
-                    UsuarioId = new Guid("943a6dfc-99ab-49ee-9f44-48c8e6da71a2")
+                    NumeroDeCuenta = 20250404,
+                    NumeroDeTarjeta = "4444333300007777",
+                    Pin = "2025",
+                    UsuarioId = Guid.Parse("B3B6F399-4993-42DE-8772-9AE8A732504D")
                 },
-                new()
+                new Cuenta()
                 {
-                    NumeroDeCuenta = 09122018,
-                    NumeroDeTarjeta = "4444222200009999",
-                    Pin = "5678",
-                    UsuarioId = new Guid("cac3bf1b-63df-4d07-ade5-a45bf0d09ea9")
+                    NumeroDeCuenta = 11235813,
+                    NumeroDeTarjeta = "4444333311117777",
+                    Pin = "0628",
+                    UsuarioId = Guid.Parse("774B7FA6-50FD-4ABC-80F7-B2000B349C23")
                 },
-                new()
+                new Cuenta()
                 {
-                    NumeroDeCuenta = 18122022,
-                    NumeroDeTarjeta = "4444333300009999",
-                    Pin = "9012",
-                    UsuarioId = new Guid("c7a9abed-adbd-4d90-91a9-4cdf1be65b07")
+                    NumeroDeCuenta = 48342025,
+                    NumeroDeTarjeta = "4454272409039986",
+                    Pin = "1051",
+                    UsuarioId = Guid.Parse("2ccef8f6-fe86-4e8d-a24b-6bd14f278e99")
                 }
-            ];
+            };
         }
     }
 }

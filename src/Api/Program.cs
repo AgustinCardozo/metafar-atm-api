@@ -32,22 +32,28 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using var scope = app.Services.CreateScope();
-var services = scope.ServiceProvider;
-
-try
-{
-    var context = services.GetRequiredService<AtmContext>();
-    await context.Database.MigrateAsync();
-}
-catch (Exception ex)
-{
-    var logger = services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, ErrorMessage.FALLA_MIGRACION);
-    throw;
-}
+ApplyMigrations(app);
 
 app.Run();
 
+static void ApplyMigrations(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
 
+    try
+    {
+        var context = services.GetRequiredService<AtmContext>();
+        if (context.Database.GetPendingMigrations().Any())
+        {
+            context.Database.Migrate();
+            }
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, ErrorMessage.FALLA_MIGRACION);
+        throw;
+    }
+}
 

@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Infrastructure.EntityConfigurations;
+using Infrastructure.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
@@ -14,6 +15,7 @@ namespace Infrastructure
         {
             base.OnModelCreating(modelBuilder);
             EntityConfiguration(modelBuilder);
+            SeedEntities(modelBuilder);
         }
 
         private static void EntityConfiguration(ModelBuilder modelBuilder)
@@ -21,6 +23,13 @@ namespace Infrastructure
             modelBuilder.ApplyConfiguration(new CuentaConfiguration());
             modelBuilder.ApplyConfiguration(new  OperacionConfiguration());
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+        }
+
+        private static void SeedEntities(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cuenta>().HasData(CuentaSeed.GetCuentas());
+            modelBuilder.Entity<Usuario>().HasData(UsuarioSeed.GetUsuarios());
+            modelBuilder.Entity<Operacion>().HasData(OperacionSeed.GetOperaciones());
         }
     }
 }
